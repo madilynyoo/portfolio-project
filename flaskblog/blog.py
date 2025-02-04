@@ -17,7 +17,7 @@ def index():
         ' FROM posts p JOIN user u ON p.author_id = u.id'
         ' ORDER BY date_posted DESC'
     ).fetchall()
-    return render_template('index.html', posts=posts)    
+    return 'Hello World!'
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
