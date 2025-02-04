@@ -11,7 +11,6 @@ bp = Blueprint('blog', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    print(db)
     return render_template('index.html')
 
 @bp.route('/create', methods=('GET', 'POST'))
