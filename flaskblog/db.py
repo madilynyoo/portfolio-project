@@ -1,16 +1,11 @@
-from os import path
-
 import sqlite3
 from datetime import datetime
 import click
 from flask import current_app, g
 
-ROOT = path.dirname(path.realpath(__file__))
-
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
-            path.join(ROOT, "schema.sql"),
             current_app.config['DATABASE'],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
