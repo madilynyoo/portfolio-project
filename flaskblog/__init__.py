@@ -1,5 +1,8 @@
 import os
 from flask import Flask
+
+ROOT = os.path.dirname(os.path.realpath(__file__))
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -7,6 +10,7 @@ def create_app(test_config=None):
         SECRET_KEY='27a798b430da3eb2fb1ece01fed4c6d142d16ea1bd572ab590e8a7e5a1b4461d',
         DATABASE=os.path.join(app.instance_path, 'flaskblog.sqlite'),
     )
+    print(ROOT, app.instance_path)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -27,7 +31,7 @@ def create_app(test_config=None):
         return 'Hello, World!'
     
     from db import init_app
-    db = init_app(app)
+    init_app(app)
 
     from auth import bp
     app.register_blueprint(bp)
