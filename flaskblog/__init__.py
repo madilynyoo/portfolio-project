@@ -29,8 +29,8 @@ def create_app(test_config=None):
     from db import init_app
     db = init_app(app)
 
-    from auth import auth
-    app.register_blueprint(auth.bp)
+    from auth import bp
+    app.register_blueprint(bp)
 
     from blog import blog
     app.register_blueprint(blog.bp)
