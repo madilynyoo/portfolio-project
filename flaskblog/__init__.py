@@ -10,6 +10,7 @@ def create_app(test_config=None):
         SECRET_KEY='27a798b430da3eb2fb1ece01fed4c6d142d16ea1bd572ab590e8a7e5a1b4461d',
         DATABASE=os.path.join(app.instance_path, 'flaskblog.sqlite'),
     )
+    print(app.instance_path, app.root_path)
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
