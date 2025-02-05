@@ -28,13 +28,13 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
     
-    from flaskblog.db import init_app
+    from db import init_app
     init_app(app)
 
-    from flaskblog.auth import bp
+    from auth import bp
     app.register_blueprint(bp)
 
-    from flaskblog.blog import bp
+    from blog import bp
     app.register_blueprint(bp)
     app.add_url_rule('/', endpoint='index')
 
