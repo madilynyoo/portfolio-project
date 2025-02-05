@@ -1,7 +1,7 @@
+# python3 -m flask --app flaskblog --debug run
+# python3 -m flask --app flaskblog init-db
 import os
 from flask import Flask
-
-ROOT = os.path.dirname(os.path.realpath(__file__))
 
 def create_app(test_config=None):
     # create and configure the app
@@ -10,8 +10,6 @@ def create_app(test_config=None):
         SECRET_KEY='27a798b430da3eb2fb1ece01fed4c6d142d16ea1bd572ab590e8a7e5a1b4461d',
         DATABASE=os.path.join(app.instance_path, 'flaskblog.sqlite'),
     )
-    print(ROOT, app.instance_path)
-
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -30,13 +28,13 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
     
-    from db import init_app
+    from flaskblog.db import init_app
     init_app(app)
 
-    from auth import bp
+    from flaskblog.auth import bp
     app.register_blueprint(bp)
 
-    from blog import bp
+    from flaskblog.blog import bp
     app.register_blueprint(bp)
     app.add_url_rule('/', endpoint='index')
 
