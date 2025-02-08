@@ -5,10 +5,10 @@ from flask import Flask
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True, instance_path='/home/madilynyoo/instance')
+    app = Flask(__name__, instance_path='/home/madilynyoo/instance')
     app.config.from_mapping(
         SECRET_KEY='27a798b430da3eb2fb1ece01fed4c6d142d16ea1bd572ab590e8a7e5a1b4461d',
-        DATABASE=os.path.join('flaskblog.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'flaskblog.sqlite'),
     )
     print(app.instance_path, app.root_path)
     if test_config is None:
